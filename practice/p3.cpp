@@ -1,3 +1,9 @@
+// Command Processor:
+// Define an enum for commands (e.g., CMD_LED_ON, CMD_LED_OFF, CMD_PRINT_MSG).
+// Define a struct for commands, containing the command enum and potentially a parameter (e.g., a string for CMD_PRINT_MSG).
+// Create a “Command Sender” task. This task periodically creates command structs (e.g., cycle through LED ON, print “Hello”, LED OFF, print “World”) and sends them to a command queue using xQueueSend.
+// Create a “Command Processor” task. This task blocks on xQueueReceive waiting for command structs.
+// When a command struct is received, the processor task uses a switch statement on the command enum to perform the requested action (toggle an LED using GPIO functions, print the message from the struct parameter). Use a queue length of at least 5 and an appropriate item size (sizeof(command_struct)).
 
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
